@@ -20,8 +20,7 @@ function GoalInput({ onAddGoal }: { onAddGoal: (text: string) => void }) {
       <TextInput style={styles.textInput} value={text} placeholder="Your course goal!" onChangeText={goalInputHandler} />
       <Button title="Add Goal" onPress={addGoalHandler} disabled={!text} />
     </View>
-  )
-    ;
+  );
 }
 
 export default GoalInput;
