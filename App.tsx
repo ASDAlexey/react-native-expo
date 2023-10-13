@@ -10,12 +10,18 @@ export default function App(): React.JSX.Element {
     setCourseGoals(currentCourseGoals => [...currentCourseGoals, { text, id: `${Math.random()}` }]);
   };
 
+  function deleteGoalHandler(id: string): void {
+    setCourseGoals(currentCourseGoals => currentCourseGoals.filter(goal => goal.id !== id));
+  }
+
   return (
     <View style={styles.appContainer}>
       <GoalInput onAddGoal={addGoalHandler}></GoalInput>
       <View style={styles.goalsContainer}>
         <FlatList
-          data={courseGoals} renderItem={itemData => <GoalItem text={itemData.item.text} />}
+          data={courseGoals} renderItem={itemData => (
+          <GoalItem text={itemData.item.text} id={itemData.item.id} onDelete={deleteGoalHandler} />
+        )}
           keyExtractor={(item, index) => item.id}
           alwaysBounceVertical={false}
         ></FlatList>

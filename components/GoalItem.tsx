@@ -1,11 +1,17 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Pressable } from 'react-native';
 
-function GoalItem(props: { text: string }): React.JSX.Element {
+function GoalItem(props: { text: string, id: string, onDelete: (id: string) => void }): React.JSX.Element {
+  function onDelete() {
+    props.onDelete(props.id)
+  }
+
   return (
-    <View style={styles.goalItem}>
-      <Text style={styles.goalItemText}>{props.text}</Text>
-    </View>
+    <Pressable onPress={onDelete}>
+      <View style={styles.goalItem}>
+        <Text style={styles.goalItemText}>{props.text}</Text>
+      </View>
+    </Pressable>
   );
 }
 
