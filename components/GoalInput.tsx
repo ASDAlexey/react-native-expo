@@ -6,14 +6,14 @@ function GoalInput({ onAddGoal }: { onAddGoal: (text: string) => void }) {
 
   function goalInputHandler(text: string): void {
     setEnteredGoalText(text);
-  };
+  }
 
   function addGoalHandler() {
     if (text) {
       onAddGoal(text);
       setEnteredGoalText('');
     }
-  };
+  }
 
   return (
     <View style={styles.inputContainer}>

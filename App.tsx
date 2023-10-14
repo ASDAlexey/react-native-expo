@@ -4,14 +4,14 @@ import GoalInput from './components/GoalInput';
 import GoalItem from './components/GoalItem';
 
 export default function App(): React.JSX.Element {
-  const [courseGoals, setCourseGoals] = useState<{ text: string, id: string }[]>([]);
+  const [courseGoals, setCourseGoals] = useState<{ text: string; id: string }[]>([]);
 
   function addGoalHandler(text: string) {
-    setCourseGoals(currentCourseGoals => [...currentCourseGoals, { text, id: `${Math.random()}` }]);
-  };
+    setCourseGoals((currentCourseGoals) => [...currentCourseGoals, { text, id: `${Math.random()}` }]);
+  }
 
   function deleteGoalHandler(id: string): void {
-    setCourseGoals(currentCourseGoals => currentCourseGoals.filter(goal => goal.id !== id));
+    setCourseGoals((currentCourseGoals) => currentCourseGoals.filter((goal) => goal.id !== id));
   }
 
   return (
@@ -19,9 +19,8 @@ export default function App(): React.JSX.Element {
       <GoalInput onAddGoal={addGoalHandler}></GoalInput>
       <View style={styles.goalsContainer}>
         <FlatList
-          data={courseGoals} renderItem={itemData => (
-          <GoalItem text={itemData.item.text} id={itemData.item.id} onDelete={deleteGoalHandler} />
-        )}
+          data={courseGoals}
+          renderItem={(itemData) => <GoalItem text={itemData.item.text} id={itemData.item.id} onDelete={deleteGoalHandler} />}
           keyExtractor={(item, index) => item.id}
           alwaysBounceVertical={false}
         ></FlatList>
