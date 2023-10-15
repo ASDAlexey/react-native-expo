@@ -24,14 +24,14 @@ function GoalInput({ visible, onAddGoal, onCancel }: { visible: boolean; onAddGo
           value={text}
           placeholder="Your course goal!"
           onChangeText={goalInputHandler}
-          placeholderTextColor="#fff"
+          placeholderTextColor={styles.textInput.color}
         />
         <View style={styles.buttonContainer}>
           <View style={styles.button}>
-            <Button title="Add Goal" onPress={addGoalHandler} disabled={!text} />
+            <Button title="Cancel" onPress={onCancel} color="#f31282" />
           </View>
           <View style={styles.button}>
-            <Button title="Cancel" onPress={onCancel} />
+            <Button title="Add Goal" onPress={addGoalHandler} disabled={!text} color="#b180f0" />
           </View>
         </View>
       </View>
@@ -52,10 +52,12 @@ const styles = StyleSheet.create({
   },
   textInput: {
     borderWidth: 1,
-    borderColor: '#ccc',
-    padding: 8,
+    borderColor: '#e4d0ff',
+    backgroundColor: '#e4d0ff',
     width: '100%',
-    color: '#fff',
+    color: '#120438',
+    borderRadius: 6,
+    padding: 16,
   },
   buttonContainer: {
     marginTop: 16,

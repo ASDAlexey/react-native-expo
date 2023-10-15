@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Button, FlatList, StyleSheet, View } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
 import GoalInput from './components/GoalInput';
 import GoalItem from './components/GoalItem';
 
@@ -25,18 +26,21 @@ export default function App(): React.JSX.Element {
   }
 
   return (
-    <View style={styles.appContainer}>
-      <GoalInput onAddGoal={addGoalHandler} onCancel={endAddGoalHandler} visible={modalIsVisible}></GoalInput>
-      <Button title="Add New Goal" color={styles.addNewGoalBtn.color} onPress={startAddGoalHandler} />
-      <View style={styles.goalsContainer}>
-        <FlatList
-          data={courseGoals}
-          renderItem={(itemData) => <GoalItem text={itemData.item.text} id={itemData.item.id} onDelete={deleteGoalHandler} />}
-          keyExtractor={(item, index) => item.id}
-          alwaysBounceVertical={false}
-        ></FlatList>
+    <>
+      <StatusBar style="light" />
+      <View style={styles.appContainer}>
+        <GoalInput onAddGoal={addGoalHandler} onCancel={endAddGoalHandler} visible={modalIsVisible}></GoalInput>
+        <Button title="Add New Goal" color={styles.addNewGoalBtn.color} onPress={startAddGoalHandler} />
+        <View style={styles.goalsContainer}>
+          <FlatList
+            data={courseGoals}
+            renderItem={(itemData) => <GoalItem text={itemData.item.text} id={itemData.item.id} onDelete={deleteGoalHandler} />}
+            keyExtractor={(item, index) => item.id}
+            alwaysBounceVertical={false}
+          ></FlatList>
+        </View>
       </View>
-    </View>
+    </>
   );
 }
 
@@ -49,8 +53,9 @@ const styles = StyleSheet.create({
   },
   goalsContainer: {
     flex: 4,
+    marginHorizontal: 8
   },
   addNewGoalBtn: {
-    color: '#5e0acc',
+    color: '#8940ee',
   },
 });
