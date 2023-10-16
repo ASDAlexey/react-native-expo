@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Modal, StyleSheet, TextInput, View, Image } from 'react-native';
+import { Button, Image, Modal, StyleSheet, TextInput, View } from 'react-native';
 
 function GoalInput({ visible, onAddGoal, onCancel }: { visible: boolean; onAddGoal: (text: string) => void; onCancel: () => void }) {
   const [text, setEnteredGoalText] = useState('');
@@ -15,6 +15,11 @@ function GoalInput({ visible, onAddGoal, onCancel }: { visible: boolean; onAddGo
     }
   }
 
+  function cancelHandler() {
+    onCancel();
+    setEnteredGoalText('');
+  }
+
   return (
     <Modal visible={visible} animationType="slide">
       <View style={styles.inputContainer}>
@@ -28,7 +33,7 @@ function GoalInput({ visible, onAddGoal, onCancel }: { visible: boolean; onAddGo
         />
         <View style={styles.buttonContainer}>
           <View style={styles.button}>
-            <Button title="Cancel" onPress={onCancel} color="#f31282" />
+            <Button title="Cancel" onPress={cancelHandler} color="#f31282" />
           </View>
           <View style={styles.button}>
             <Button title="Add Goal" onPress={addGoalHandler} disabled={!text} color="#b180f0" />
